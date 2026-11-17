@@ -2,7 +2,7 @@
 
 Site de l'agence digitale DIGIFRAME (Abidjan, Côte d'Ivoire).
 
-**En ligne :** https://digiframe417-cpu.github.io
+**En ligne :** https://digiframeci.com
 
 ## Contenu
 - `index.html` — la page du site

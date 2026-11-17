@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://digiframe417-cpu.github.io/sitemap.xml
+Sitemap: https://digiframeci.com/sitemap.xml
