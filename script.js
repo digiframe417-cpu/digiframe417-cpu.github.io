@@ -44,6 +44,7 @@ const EMAILJS = {
   publicKey: '9RQ8m_ZYJrnPhaq2g',   // Account > General > Public Key
   serviceId: 'service_ayxse49',     // Email Services > Gmail
   templateId: 'template_mp0fsyw',   // Email Templates > « Contact Us » → contact@digiframeci.com
+  autoReplyTemplateId: 'template_tybsugd', // « Auto-Reply » → accusé de réception au visiteur ({{email}})
 };
 const emailjsReady = () =>
   window.emailjs && EMAILJS.publicKey && EMAILJS.serviceId && EMAILJS.templateId;
@@ -145,7 +146,24 @@ if (form) {
           'Téléphone : ' + (d.get('phone') || 'non renseigné') + '\n\n' +
           d.get('message'),
       });
-      showResult('✓ Merci ' + d.get('name') + ' ! Votre message a bien été envoyé. Nous vous répondons très vite.', 'success');
+      // Accusé de réception automatique au visiteur (s'il a donné son e-mail).
+      // Un échec ici ne doit pas empêcher de confirmer l'envoi principal.
+      let autoReplied = false;
+      if (d.get('email') && EMAILJS.autoReplyTemplateId) {
+        try {
+          await window.emailjs.send(EMAILJS.serviceId, EMAILJS.autoReplyTemplateId, {
+            name: d.get('name'),
+            email: d.get('email'),
+            service: d.get('service'),
+            title: 'Demande de projet – ' + d.get('service'),
+          });
+          autoReplied = true;
+        } catch (err) {
+          console.warn('EmailJS auto-reply', err);
+        }
+      }
+      showResult('✓ Merci ' + d.get('name') + ' ! Votre message a bien été envoyé.' +
+        (autoReplied ? ' Un e-mail de confirmation vous a été envoyé.' : ' Nous vous répondons très vite.'), 'success');
       form.reset();
     } catch (err) {
       console.error('EmailJS', err);
