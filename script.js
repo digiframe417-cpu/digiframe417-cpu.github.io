@@ -36,7 +36,7 @@ if (year) year.textContent = new Date().getFullYear();
 
 // Formulaire de contact : envoi direct par e-mail (EmailJS) ou message WhatsApp
 const WHATSAPP = '2250501098607';
-const EMAIL = 'digiframe417@gmail.com';
+const EMAIL = 'contact@digiframeci.com';
 
 // Identifiants EmailJS (tableau de bord emailjs.com). La clé publique est faite
 // pour être visible dans le site : ce n'est pas un mot de passe.
