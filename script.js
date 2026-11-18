@@ -41,9 +41,9 @@ const EMAIL = 'contact@digiframeci.com';
 // Identifiants EmailJS (tableau de bord emailjs.com). La clé publique est faite
 // pour être visible dans le site : ce n'est pas un mot de passe.
 const EMAILJS = {
-  publicKey: '',   // Account > General > Public Key
-  serviceId: '',   // Email Services > Service ID
-  templateId: '',  // Email Templates > Template ID
+  publicKey: '9RQ8m_ZYJrnPhaq2g',   // Account > General > Public Key
+  serviceId: '',                    // Email Services > Service ID (service Gmail à créer)
+  templateId: 'template_mp0fsyw',   // Email Templates > « Contact Us » → contact@digiframeci.com
 };
 const emailjsReady = () =>
   window.emailjs && EMAILJS.publicKey && EMAILJS.serviceId && EMAILJS.templateId;
@@ -129,14 +129,21 @@ if (form) {
     btn.textContent = 'Envoi en cours…';
     showResult('Envoi de votre message…');
     try {
+      // Les noms correspondent au modèle EmailJS « Contact Us » ({{name}}, {{time}}, {{message}}, {{title}}…)
       await window.emailjs.send(EMAILJS.serviceId, EMAILJS.templateId, {
+        name: d.get('name'),
         from_name: d.get('name'),
+        email: d.get('email') || '',
         reply_to: d.get('email') || EMAIL,
-        email: d.get('email') || 'non renseigné',
         phone: d.get('phone') || 'non renseigné',
         service: d.get('service'),
-        message: d.get('message'),
         title: 'Demande de projet – ' + d.get('service'),
+        time: new Date().toLocaleString('fr-FR', { timeZone: 'Africa/Abidjan' }),
+        message:
+          'Service : ' + d.get('service') + '\n' +
+          'E-mail : ' + (d.get('email') || 'non renseigné') + '\n' +
+          'Téléphone : ' + (d.get('phone') || 'non renseigné') + '\n\n' +
+          d.get('message'),
       });
       showResult('✓ Merci ' + d.get('name') + ' ! Votre message a bien été envoyé. Nous vous répondons très vite.', 'success');
       form.reset();
