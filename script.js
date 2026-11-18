@@ -42,7 +42,7 @@ const EMAIL = 'contact@digiframeci.com';
 // pour être visible dans le site : ce n'est pas un mot de passe.
 const EMAILJS = {
   publicKey: '9RQ8m_ZYJrnPhaq2g',   // Account > General > Public Key
-  serviceId: '',                    // Email Services > Service ID (service Gmail à créer)
+  serviceId: 'service_ayxse49',     // Email Services > Gmail
   templateId: 'template_mp0fsyw',   // Email Templates > « Contact Us » → contact@digiframeci.com
 };
 const emailjsReady = () =>
