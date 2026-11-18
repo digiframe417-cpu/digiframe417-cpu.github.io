@@ -230,6 +230,9 @@ svg { flex-shrink: 0; }
 .form-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .form-note { font-size: .85rem; margin: 0; }
 .form-note.error { color: #ffb4ae; }
+.form-note.success { color: #8ff0b4; font-weight: 600; }
+.form .btn:disabled { opacity: .7; cursor: wait; transform: none; }
+.hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* Pied de page */
 .footer { background: #061232; color: #9fb0d6; padding: 22px 0; font-size: .88rem; }

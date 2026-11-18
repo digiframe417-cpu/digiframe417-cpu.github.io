@@ -359,10 +359,13 @@
       </div>
 
       <form class="form" id="contact-form" novalidate>
+        <label>Votre nom *<input required name="name" autocomplete="name" placeholder="Nom et prénom"></label>
         <div class="form-row">
-          <label>Votre nom *<input required name="name" autocomplete="name" placeholder="Nom et prénom"></label>
+          <label>Votre e-mail<input name="email" type="email" autocomplete="email" placeholder="vous@exemple.com"></label>
           <label>Téléphone<input name="phone" type="tel" autocomplete="tel" placeholder="07 00 00 00 00"></label>
         </div>
+        <!-- Champ piège anti-spam : invisible pour les visiteurs, rempli seulement par les robots -->
+        <label class="hp" aria-hidden="true">Ne pas remplir<input name="website" tabindex="-1" autocomplete="off"></label>
         <label>Service souhaité *
           <select name="service" required>
             <option value="">Choisir un service</option>
@@ -380,7 +383,7 @@
           <button class="btn btn-orange" type="submit" data-via="whatsapp">Envoyer sur WhatsApp <span aria-hidden="true">→</span></button>
           <button class="btn btn-outline-light" type="submit" data-via="email">Envoyer par e-mail</button>
         </div>
-        <p class="form-note" id="form-result" aria-live="polite">Votre message s'ouvre dans WhatsApp ou votre messagerie, prêt à être envoyé.</p>
+        <p class="form-note" id="form-result" aria-live="polite">Par e-mail, votre message nous est envoyé directement. Par WhatsApp, il s'ouvre prêt à être envoyé.</p>
       </form>
     </div>
   </section>
@@ -399,6 +402,7 @@
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4.4.1/dist/email.min.js"></script>
 <script src="script.js"></script>
 </body>
 </html>
